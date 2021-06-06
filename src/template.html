@@ -6,14 +6,29 @@
     <title>Weather App</title>
   </head>
   <body>
+    <header>
+      <h1>Weather App</h1>
+    </header>
     <div class="container">
-      <h1 class="city"></h1>
-      <h2 class="temp"></h2>
-      <label for="city-input"
-        >Enter city name:
+      <div class="lds-facebook">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="city-container">
+        <p class="switch">Change to °F</p>
+        <h1 class="error">Please Enter Valid Location</h1>
+        <h1 class="city"></h1>
+        <h2 class="weather"></h2>
+        <img alt="" />
+        <h2 class="temp"></h2>
+      </div>
+      <label for="city-input">
+        Enter Location:
         <input type="text" class="city-input" name="city-input" />
       </label>
       <button type="submit" class="search">Search</button>
     </div>
+    <footer>Made by Sanberk Türker as The Odin Project exercise</footer>
   </body>
 </html>

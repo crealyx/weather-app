@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/index.js',
@@ -36,9 +37,18 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    fallback: {
+      path: require.resolve('path-browserify'),
+      fs: false,
+    },
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/template.html',
+    }),
+    new Dotenv({
+      path: './.env',
     }),
   ],
 };
