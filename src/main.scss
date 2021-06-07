@@ -1,18 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-.container {
-  max-width: 400px;
-  background-color: rgba(0, 103, 199, 0.267);
-  margin: 50px auto;
-  display: flex;
-  flex-direction: column;
-  .city-container {
-    display: none;
-    flex-direction: column;
-    border-bottom: 2px solid white;
-    margin: 0px auto;
-    width: 90%;
-  }
-}
 
 body {
   background: url(./assets/img/bg1.jpg) no-repeat center center fixed;
@@ -50,15 +36,36 @@ label {
   margin-top: 20px;
   color: rgb(255, 255, 255);
 }
-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(255, 72, 72, 0.452);
-  text-align: center;
-  color: white;
+
+.container {
+  max-width: 400px;
+  background-color: rgba(0, 103, 199, 0.267);
+  margin: 50px auto;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  .city-container {
+    display: none;
+    flex-direction: column;
+    border-bottom: 2px solid white;
+    margin: 0px auto;
+    width: 90%;
+
+    .switch {
+      font-size: 1rem;
+      outline: none;
+      border-radius: 5px;
+      color: rgb(163, 255, 58);
+      cursor: pointer;
+    }
+    .error {
+      display: none;
+      color: rgb(255, 31, 1);
+      font-size: 2rem;
+    }
+  }
 }
+
 .search {
   background-color: rgba(137, 255, 225, 0.931);
   outline: none;
@@ -85,18 +92,6 @@ footer {
   font-size: 1.3rem;
 }
 
-.switch {
-  font-size: 1rem;
-  outline: none;
-  border-radius: 5px;
-  color: rgb(163, 255, 58);
-  cursor: pointer;
-}
-.error {
-  display: none;
-  color: rgb(255, 31, 1);
-  font-size: 2rem;
-}
 // Icon
 .lds-facebook {
   display: none;

@@ -8,6 +8,7 @@ if (module.hot) {
 
 const key = process.env.API_KEY;
 
+// DOM Selectors
 const loadIcon = document.querySelector('.lds-facebook');
 const cityName = document.querySelector('.city');
 const cityTemp = document.querySelector('.temp');
@@ -19,13 +20,18 @@ const weatherIcon = document.querySelector('img');
 const cityContainer = document.querySelector('.city-container');
 const errorMsg = document.querySelector('.error');
 
+// Sends request to openweather api
 const getCity = async (city) => {
   const base = 'https://api.openweathermap.org/data/2.5/weather';
   const query = `?q=${city}&units=metric&appid=${key}`;
+
+  // Display loading icon while getting data
   cityContainer.style.display = 'none';
   loadIcon.style.display = 'inline-block';
 
   const response = await fetch(base + query);
+
+  // Remove loading icon
   cityContainer.style.display = 'flex';
   loadIcon.style.display = 'none';
 
@@ -36,6 +42,7 @@ const getCity = async (city) => {
   return [data.name, data.main.temp, data.weather[0]];
 };
 
+// Search with enter key
 cityInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
     e.preventDefault();
@@ -43,38 +50,26 @@ cityInput.addEventListener('keydown', (e) => {
   }
 });
 
+// Search by clicking search button
 cityButton.addEventListener('click', (e) => {
   e.preventDefault();
   searchCity();
 });
 
+// Switch between fahrenheit and celcius units
 tempSwitch.addEventListener('click', (e) => {
-  const city = cityInput.value;
+  const temp = cityTemp.textContent.split(' ');
+  const tempInt = parseInt(temp[0], 10);
   if (e.target.textContent === 'Change to °F') {
-    getCity(city)
-      .then((data) => {
-        errorMsg.style.display = 'none';
-        cityTemp.textContent = `${Math.ceil(data[1]) * (9 / 5) + 32} °F`;
-      })
-      .catch(() => {
-        hideCityContents();
-        errorMsg.style.display = 'block';
-      });
+    cityTemp.textContent = `${Math.round((tempInt * 9) / 5 + 32)} °F`;
     e.target.textContent = 'Change to °C';
   } else {
-    getCity(city)
-      .then((data) => {
-        errorMsg.style.display = 'none';
-        cityTemp.textContent = `${Math.ceil(data[1])} °C`;
-      })
-      .catch(() => {
-        hideCityContents();
-        errorMsg.style.display = 'block';
-      });
+    cityTemp.textContent = `${Math.round((tempInt - 32) * (5 / 9))} °C`;
     e.target.textContent = 'Change to °F';
   }
 });
 
+//
 function searchCity() {
   const city = cityInput.value;
   getCity(city)
